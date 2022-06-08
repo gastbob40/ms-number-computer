@@ -15,16 +15,13 @@ MM.init(config, (err, serviceInfo) => {
      * You can now subscribe to specific message
      */
     MM.subscribe('add', (bdy, msg) => {
-        /**
-         * TODO: Uncomment when operationnal
-         **/
-        // const computer = require('./computer');
-        // try {
-        //     const result = computer.add(bdy.a, bdy.b);
-        //     msg.reply({ result });
-        // } catch (err) {
-        //     console.error(err);
-        //     return msg.replyErr(err);
-        // }
+        const computer = require('./computer');
+        try {
+            const result = computer.add(parseInt(bdy.a), parseInt(bdy.b));
+            msg.reply({result});
+        } catch (err) {
+            console.error(err);
+            return msg.replyErr(err);
+        }
     });
 });
